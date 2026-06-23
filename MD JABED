@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD JABED</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#2563eb);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.card{
+background:#fff;
+width:100%;
+max-width:420px;
+border-radius:25px;
+padding:30px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.profile{
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #2563eb;
+margin-bottom:15px;
+}
+
+h1{
+color:#111827;
+margin-bottom:8px;
+}
+
+.bio{
+color:#6b7280;
+margin-bottom:25px;
+font-size:15px;
+}
+
+.btn{
+display:block;
+text-decoration:none;
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+color:white;
+font-size:18px;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+.facebook{
+background:#1877F2;
+}
+
+.tiktok{
+background:#000;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.call{
+background:#ff6b00;
+}
+
+.imo{
+background:#0084FF;
+}
+
+.gmail{
+background:#EA4335;
+}
+
+.footer{
+margin-top:20px;
+font-size:14px;
+color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="retouch_2026062221580185.jpg" alt="MD JABED" class="profile">
+
+<h1>MD JABED</h1>
+
+<p class="bio">
+Welcome To My Official Profile
+</p>
+
+<a class="btn facebook"
+href="https://www.facebook.com/share/1ETmshkCzR/"
+target="_blank">
+📘 Facebook Profile
+</a>
+
+<a class="btn tiktok"
+href="https://tiktok.com/@mdjabed6t"
+target="_blank">
+🎵 TikTok Profile
+</a>
+
+<a class="btn whatsapp"
+href="https://wa.me/8801304564096"
+target="_blank">
+💬 WhatsApp Chat
+</a>
+
+<a class="btn call"
+href="tel:01304564096">
+📞 Direct Call
+</a>
+
+<a class="btn imo"
+href="tel:01304564096">
+📱 IMO: 01304564096
+</a>
+
+<a class="btn gmail"
+href="mailto:mdj485786@gmail.com">
+✉️ Gmail
+</a>
+
+<div class="footer">
+© MD JABED
+</div>
+
+</div>
+
+</body>
+</html>
