@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHOENIX GRAY | Official Profile</title>
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 
-         * DESIGN SYSTEM & VARIABLES 
+        /* * PREMIUM THEME CONFIGURATION 
          */
         :root {
             --bg-color: #0a0a0a;
             --gold: #d4af37;
-            --gold-light: #f7ef8a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(212, 175, 55, 0.3);
             --text-main: #ffffff;
             --blue-verified: #1da1f2;
         }
@@ -24,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
@@ -34,11 +31,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Particles Background */
+        /* Particle Background Canvas */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -46,40 +43,43 @@
             z-index: 1;
         }
 
-        /* 
-         * MAIN CARD CONTAINER 
+        /* * GLASSMORPHISM CARD 
          */
         .profile-card {
             position: relative;
             z-index: 10;
             width: 90%;
             max-width: 450px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
             padding: 40px 25px;
-            border-radius: 30px;
+            border-radius: 40px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: fadeIn 1s ease-out;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            animation: fadeIn 1.2s ease-in-out;
         }
 
-        /* Golden Border Animation */
-        .profile-card::before {
+        /* Animated Golden Border */
+        .profile-card::after {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, var(--gold), #000, var(--gold));
-            z-index: -1;
-            border-radius: 32px;
-            animation: rotateBorder 5s linear infinite;
+            inset: -2px;
+            border-radius: 42px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--gold), transparent, var(--gold));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderRotate 4s linear infinite;
         }
 
-        /* Profile Image */
+        /* Profile Picture Styling */
         .img-container {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 20px;
         }
 
@@ -88,8 +88,13 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--gold);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 20px var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
         }
 
         /* Name & Badge */
@@ -97,13 +102,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 15px;
         }
 
         .name {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 700;
             background: linear-gradient(to right, #fff, var(--gold), #fff);
             -webkit-background-clip: text;
             background-clip: text;
@@ -118,13 +123,12 @@
 
         /* Bio */
         .bio {
-            font-size: 0.95rem;
-            opacity: 0.8;
+            font-size: 1rem;
             margin-bottom: 30px;
-            line-height: 1.6;
+            opacity: 0.9;
         }
 
-        /* Buttons */
+        /* Links/Buttons */
         .links-container {
             display: flex;
             flex-direction: column;
@@ -135,35 +139,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 15px;
-            background: rgba(255,255,255,0.03);
+            gap: 15px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--gold);
             color: var(--gold);
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 15px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .btn:hover {
             background: var(--gold);
             color: #000;
             box-shadow: 0 0 20px var(--gold);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
-        /* Footer */
         footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.5;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: var(--gold);
+            opacity: 0.6;
         }
 
-        /* Animations */
-        @keyframes rotateBorder {
+        /* Keyframe Animations */
+        @keyframes borderRotate {
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
@@ -174,37 +178,30 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 480px) {
-            .profile-card { width: 95%; padding: 30px 15px; }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Particle Background Div -->
     <div id="particles-js"></div>
 
     <main class="profile-card">
         <div class="img-container">
-            <!-- Using a high-quality placeholder if image is missing -->
-            <img src="IMG202606271002067.png"class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=PG&background=d4af37&color=000&size=256'">
+            <img src="IMG202606271002067.png" alt="PHOENIX GRAY" class="profile-img">
         </div>
 
         <div class="name-wrapper">
             <h1 class="name">PHOENIX GRAY</h1>
-            <i class="fas fa-check-circle verified-badge" title="Verified"></i>
+            <i class="fas fa-check-circle verified-badge"></i>
         </div>
 
-        <p class="bio">
+        <div class="bio">
             ﷽<br>
             Assalamu Alaikum<br>
             Welcome To My Official Profile
-        </p>
+        </div>
 
         <section class="links-container">
             <a href="https://www.facebook.com/share/17dk3VNyaz/" class="btn"><i class="fab fa-facebook"></i> Facebook</a>
@@ -219,23 +216,18 @@
         </footer>
     </main>
 
-    <!-- Particles.js CDN & Config -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#d4af37" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.5, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#d4af37", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" }
+                "size": { "value": 2, "random": true },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "out_mode": "out" }
             },
-            "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }
-            },
-            "retina_detect": true
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
         });
     </script>
 </body>
