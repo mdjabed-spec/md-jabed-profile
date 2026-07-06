@@ -1,133 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHOENIX GRAY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOENIX GRAY | Official Profile</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 
+         * DESIGN SYSTEM & VARIABLES 
+         */
+        :root {
+            --bg-color: #0a0a0a;
+            --gold: #d4af37;
+            --gold-light: #f7ef8a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --blue-verified: #1da1f2;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
-}
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
 
-.card{
-width:100%;
-max-width:420px;
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.2);
-border-radius:30px;
-padding:30px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
+        /* 
+         * MAIN CARD CONTAINER 
+         */
+        .profile-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 450px;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 40px 25px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-out;
+        }
 
-.profile{
-width:160px;
-height:160px;
-border-radius:50%;
-object-fit:cover;
-border:5px solid #fff;
-margin-bottom:15px;
-box-shadow:0 0 25px rgba(255,255,255,.4);
-}
+        /* Golden Border Animation */
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--gold), #000, var(--gold));
+            z-index: -1;
+            border-radius: 32px;
+            animation: rotateBorder 5s linear infinite;
+        }
 
-h1{
-color:#fff;
-font-size:34px;
-margin-bottom:8px;
-}
+        /* Profile Image */
+        .img-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
 
-.bio{
-color:#ddd;
-margin-bottom:25px;
-font-size:16px;
-}
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
 
-.btn{
-display:block;
-text-decoration:none;
-padding:15px;
-margin:12px 0;
-border-radius:15px;
-font-size:18px;
-font-weight:600;
-color:#fff;
-transition:.3s;
-}
+        /* Name & Badge */
+        .name-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
 
-.btn:hover{
-transform:translateY(-3px);
-}
+        .name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 3s infinite linear;
+        }
 
-.facebook{background:#1877F2;}
-.tiktok{background:#000;}
-.whatsapp{background:#25D366;}
-.call{background:#ff6b00;}
-.imo{background:#0084ff;}
-.gmail{background:#EA4335;}
+        .verified-badge {
+            color: var(--blue-verified);
+            font-size: 1.2rem;
+        }
 
-.footer{
-margin-top:20px;
-color:#fff;
-font-size:14px;
-}
-</style>
+        /* Bio */
+        .bio {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 20px var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* Animations */
+        @keyframes rotateBorder {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .profile-card { width: 95%; padding: 30px 15px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
+    <!-- Particle Background Div -->
+    <div id="particles-js"></div>
 
-<img src="IMG20260627100206.png" class="profile" alt="PHOENIX GRAY">
+    <main class="profile-card">
+        <div class="img-container">
+            <!-- Using a high-quality placeholder if image is missing -->
+            <img src="IMG202606271002067.png" alt="PHOENIX GRAY" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=PG&background=d4af37&color=000&size=256'">
+        </div>
 
-<h1>PHOENIX GRAY</h1>
+        <div class="name-wrapper">
+            <h1 class="name">PHOENIX GRAY</h1>
+            <i class="fas fa-check-circle verified-badge" title="Verified"></i>
+        </div>
 
-<p class="bio">Assalamu Alaikum, Welcome to My Profile.</p>
+        <p class="bio">
+            ﷽<br>
+            Assalamu Alaikum<br>
+            Welcome To My Official Profile
+        </p>
 
-<a class="btn facebook" href="https://https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"target="_blank">
-<i class="fab fa-facebook-f"></i> Facebook
-</a>
+        <section class="links-container">
+            <a href="https://www.facebook.com/share/17dk3VNyaz/" class="btn"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://tiktok.com/@phoenix.gray2.0" class="btn"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://wa.me/8801843373682" class="btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+8801843373682" class="btn"><i class="fas fa-phone"></i> Call Now</a>
+            <a href="mailto:mrhacker04564096@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email Me</a>
+        </section>
 
-<a class="btn tiktok" href="https://tiktok.com/@pohenix.gray2.0" target="_blank">
-<i class="fab fa-tiktok"></i> TikTok
-</a>
+        <footer>
+            &copy; 2026 PHOENIX GRAY. All Rights Reserved.
+        </footer>
+    </main>
 
-<a class="btn whatsapp" href="https://wa.me/8801843373682" target="_blank">
-<i class="fab fa-whatsapp"></i> WhatsApp
-</a>
-
-<a class="btn call" href="tel:01843373682">
-<i class="fas fa-phone"></i> Direct Call
-</a>
-
-<a class="btn imo" href="tel:01843373682">
-<i class="fas fa-comments"></i> IMO: 01843373682
-</a>
-
-<a class="btn gmail" href="mailto: mrhacker04564096@gmail.com">
-<i class="fas fa-envelope"></i> Gmail
-</a>
-
-<div class="footer">
-© 2026 PHOENIX GRAY 
-</div>
-
-</div>
-
+    <!-- Particles.js CDN & Config -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#d4af37" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#d4af37", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "out_mode": "out" }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
